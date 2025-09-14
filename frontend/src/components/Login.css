@@ -1,0 +1,37 @@
+.login-page {
+    border: 1px solid #ccc;
+    padding: 2em;
+    border-radius: 5px;
+    width: 40vw;
+    margin: 5em auto;
+    background-color: #f9f9f9;  
+    font-family: Arial, sans-serif;
+    h2 {
+        text-align: center;
+        margin-bottom: 1em;
+        font-weight: bold;
+        font-size: 2em;
+        color: #4CAF50;
+    }
+
+    button {
+        width: 30%;
+        padding: 0.5em;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        margin: 1em auto;
+        display: block;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.5em;
+        margin: 0.5em 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,90 @@
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+    border: 2px solid rgb(218, 212, 212);
+    padding: 1em;
+    width: 15vw;
+    font-size: large;
+}
+
+.profile-page {
+    display: flex;
+    gap: 2em;
+    margin: 2em;
+    font-size: large;
+}
+/* INFO page */
+.info {
+    border: 2px solid rgb(218, 212, 212);
+    padding: 1em;
+    width: 85vw;
+}
+.info-title {
+    text-align: center;
+}
+.edit-form {
+     display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-areas:
+    "label-username label-username"
+    "label-email email"
+    "label-password password"
+    "label-fullname fullname"
+    "label-tel tel"
+    "btn-edit btn-edit";
+    gap: 1em;
+}
+
+input {
+    width: 20em;
+}
+
+.label-username {
+  grid-area: label-username;
+}
+.label-fullname {
+  grid-area: label-fullname;
+}
+.fullname {
+  grid-area: fullname;
+}
+.label-email {
+  grid-area: label-email;
+}
+
+.password {
+  grid-area: password;
+}
+
+.email {
+  grid-area: email;
+}
+
+.label-password {
+  grid-area: label-password;
+}
+
+.label-tel {
+  grid-area: label-tel;
+}
+
+.tel {
+  grid-area: tel;
+}
+.btn-edit {
+  grid-area: btn-edit;
+  width: 10em;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  background-color: rgb(70, 175, 236);
+  color: aliceblue;
+}
+
+table, th, td {
+  border:1px solid black;
+  width: 70vw;
+  text-align: center;
+}
