@@ -50,6 +50,7 @@ export default function Cart() {
 
     const data = await res.json();
     alert("Order successfully!");
+    dispatch({ type: "CLEAR_CART"});
     navigate("/");
   } catch (err) {
     console.error("orders api error!", err);
