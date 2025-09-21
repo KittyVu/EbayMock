@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 function safeJSONParse(key) {
   try {
@@ -42,7 +42,7 @@ export const reducer = (state, action) => {
       return { ...state, likedProducts: updated };
     }
 
-    case "FETCH_CART":
+    case "FETCH_CART": 
       return { ...state, cart: action.payload };
 
     case "ADD_TO_CART": {
@@ -86,8 +86,9 @@ export const reducer = (state, action) => {
       return { ...state, products: filteredProducts };
     }
 
-    case "FETCH_ORDERS":
+    case "FETCH_ORDERS": {
       return { ...state, orders: action.payload };
+    }  
 
     case "LOGIN":
       return { ...state, loggedIn: true, user: action.payload };
@@ -108,6 +109,27 @@ export const AppReducer = createContext(null);
 
 export function AppReducerProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+   useEffect(() => {
+    // ✅ load orders globally
+    async function fetchOrders() {
+      try {
+        const res = await fetch("http://localhost:5001/api/cart/orders", {
+          method: "GET",
+          credentials: "include",
+        });
+        if (!res.ok) throw new Error("Failed to fetch orders");
+        const data = await res.json();
+        dispatch({
+          type: "FETCH_ORDERS",
+          payload: Array.isArray(data) ? data : [],
+        });
+      } catch (err) {
+        console.error("Fetch orders error:", err);
+      }
+    }
+
+    fetchOrders();
+  }, []);
   return (
     <AppReducer.Provider value={{ state, dispatch }}>
       {children}
