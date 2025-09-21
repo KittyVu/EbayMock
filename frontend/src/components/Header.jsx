@@ -1,11 +1,12 @@
 import { useEffect, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Search from './Search';
 import { AppReducer } from '../context/AppReducer';
 import "./Header.css";
-
+// header is always render in every route, so username always exists
 export default function Header() {
   const { state, dispatch } = useContext(AppReducer);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // load cart
@@ -39,6 +40,7 @@ export default function Header() {
       credentials: "include",
     });
     dispatch({ type: "LOGOUT" });
+    navigate("/")
   };
 
   return (
