@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { AppReducer } from '../context/AppReducer';
 import {  useSearchParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import './SearchResult.css';
 
 export default function SearchResult() {
     const { state, dispatch } = useContext(AppReducer);
@@ -23,25 +24,27 @@ export default function SearchResult() {
         <div>
             <h1>Search result</h1>
             <p><b>{state.products.length} </b>founded</p>
-            <div className="products-container">
+            <div className="search-container">
             
             {
                 // using useReducer
                 state.products.map((product) => {
                     const isLike = state.likedProducts.some((p) => p.id === product.id);
                     return (
-                        <div className="product-element" key={product.id}>
+                        <div className="search-element" key={product.id}>
+                            <div className='search-item'>
                             <span
-                                className="likeProducts"
+                                className="searchlikeProducts"
                                 onClick={() => isLike ? dispatch({ type: "REMOVE_LIKE", payload: product.id }) : dispatch({ type: "ADD_LIKE", payload: product })}
                             >
                                 {isLike ? '❤️' : '🤍'}
                             </span>
                             <NavLink to={`/products/${product.id}`}>
-                                <img src={product.image} alt="product" />
+                                <img className='search-img' src={product.image} alt="product" />
                             </NavLink>
-                            <p className="letter">{product.title}</p>
-                            <b>{product.price} €</b>
+                            </div>
+                            <p className="searchletter">{product.title}</p>
+                            <b className='search-price'>{product.price} €</b>
                         </div>
                     );
                 })
